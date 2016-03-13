@@ -1,9 +1,81 @@
 $background-gray: #F7F7F7;
+$light-gray: #E0E0E0;
+$menu-color: #E3E3E3;
+$menu-border-color: #777;
+
+
+$gray: #A0A0A0;
+$red: #F8766D;
+$orange: #E58700;
+$brown: #C99800;
+$olive: #A3A500;
+$forest: #6BB100;
+$green: #00BA38;
+$emerald: #00BF7D;
+$alge: #00C0AF;
+$sea: #00BCD8;
+$cyan: #02AFF7;
 $blue: #619CFF;
+$purple: #B983FF;
+$magenta: E76BF3;
+$pink: #FD61D1;
+$raspberry: #FF67A4;
+
 
 body {
-	font-family: "Gotham Narrow"
+	font-family: -apple-system "Helvetica Neue";
 }
+
+.notebook_app > #header {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-bottom: 1px solid #AAA;
+}
+.container {
+	width: 100%;
+	border: none;
+	margin: 0;
+}
+body > #header #header-container {
+	background-color: $menu-color;
+	display: inline-block;
+	position: fixed;
+	padding: 0;
+	left: 408px;
+	top: 4px;
+	z-index: 1;
+	background: none;
+	.save_widget {
+		border-left: 1px solid $menu-border-color;
+	}
+	.filename {
+		padding: 0;
+	}
+	.navbar-brand, #kernel_logo_widget, .checkpoint_status {
+		display: none;
+	}
+}
+.navbar-nav > li > a, .kernel_indicator_name, #header-container .filename, .autosave_status{
+	color: $menu-border-color;
+	cursor: pointer;
+	font-size: 13px;
+	&:hover, &:focus {
+		color: #333;
+	}
+}
+.navbar-default {
+	padding-top: 4px;
+	margin: -1px;
+}
+.navbar {
+	background-color: $menu-color;
+}
+.navbar-inner {
+	margin: 4px 0 8px 10px;
+}
+
+
+
 
 .notebook_app {
 	background-color: white;
@@ -12,17 +84,22 @@ body {
 #notebook-container {
 	box-shadow: none;
 	width: 100%;
+	padding-right: 60px;
+	max-width: 1000px;
+	margin: 0 auto;
 }
 
 .edit_mode div.cell.selected, div.cell.selected {
 	border-color: white;
-	background: none;
-}
-div.cell.selected {
-	border-left: 3px solid lightgray;
+	border-left: 3px solid $light-gray;
 	margin-left: -3px;
+	background: none;
+	// background: linear-gradient(to right, $light-gray -40px, $light-gray 5px, transparent 5px, transparent 100%);
 }
-.edit_mode div.cell.selected {border-left: 3px solid $blue;}
+.edit_mode div.cell.selected {
+	border-left-color: $blue;
+	// background: linear-gradient(to right, $blue -40px, $blue 5px, transparent 5px, transparent 100%);
+}
 
 div.input_area {
 	border: none;
@@ -31,16 +108,23 @@ div.input_area {
 	padding: 5px;
 }
 div.output_subarea {
-	border: 2px solid $background-gray;
+	border: 4px solid $background-gray;
 	border-radius: 0 0 4px 4px;
-	padding: 10px;
+	padding: 8px;
 	max-width: none;
+	margin-bottom: -4px;
 }
+div.output_scroll {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-bottom: 12px double $background-gray;
+}
+div.out_prompt_overlay {border-bottom: 12px solid white}
+
 
 .prompt, div.input_prompt, div.output_prompt {
 	padding: 5px;
-	color: lightgray;
-	min-width: none;
+	color: $light-gray;
 	font-family: "Operator Mono";
 	font-weight: 300;
 }
@@ -50,31 +134,58 @@ div.output_prompt {color: white}
 	color: #CFCFCF;
 }
 
-.CodeMirror pre, pre, .CodeMirror-linenumber {
+.CodeMirror pre, pre, code, .CodeMirror-linenumber {
 	font-family: "Operator Mono";
 	font-weight: 300;
 }
 
-/*
-.CodeMirror span.cm-keyword { line-height: 1em; font-weight: bold; color: #5A5CAD; }
-.CodeMirror span.cm-atom { color: #6C8CD5; }
-.CodeMirror span.cm-number { color: #164; }
-.CodeMirror span.cm-def { text-decoration:underline; }
-.CodeMirror span.cm-variable { color: black; }
-.CodeMirror span.cm-variable-2 { color:black; }
-.CodeMirror span.cm-variable-3 { color: black; }
-.CodeMirror span.cm-property {}
-.CodeMirror span.cm-operator {}
-.CodeMirror span.cm-comment { color: #0080FF; font-style: italic; }
-.CodeMirror span.cm-string { color: red; }
-.CodeMirror span.cm-meta { color: yellow; }
-.CodeMirror span.cm-qualifier { color: grey; }
-.CodeMirror span.cm-builtin { color: #7EA656; }
-.CodeMirror span.cm-bracket { color: #cc7; }
-.CodeMirror span.cm-tag { color: #3F7F7F; }
-.CodeMirror span.cm-attribute { color: #7F007F; }
-.CodeMirror span.cm-error { color: #f00; }
-*/
+.CodeMirror, .cm-s-ipython {
+	span.cm-comment {
+		color: $gray;
+		font-style: italic;
+	}
+	span.cm-keyword, span.cm-operator, span.cm-variable-2 {
+		color: $orange;
+		font-weight: 500;
+	}
+	span.cm-number, span.cm-atom {
+		color: $purple;
+	}
+	span.cm-string {
+		color: $olive;
+	}
+	span.cm-string-2 {
+		color: $brown;
+	}
+	span.cm-arg-is {
+		color: $blue;
+		font-weight: 500;
+	}
+	span.cm-def {
+		color: $blue;
+		font-style: italic;
+	}
+	span.cm-variable, span.cm-variable-3, span.cm-bracket {
+		color: black;
+	}
+	span.cm-property {}
+
+	span.cm-meta {
+		color: yellow;
+	}
+	span.cm-qualifier {
+		color: grey;
+	}
+	span.cm-builtin {
+		color: $green;
+	}
+	span.cm-tag { color: #3F7F7F; }
+	span.cm-attribute { color: #7F007F; }
+	span.cm-error {
+		color: $red;
+		font-weight: 500;
+	}
+}
 
 .CodeMirror-cursor {
 	border-left: 2px solid $blue;
@@ -89,11 +200,11 @@ div.output_prompt {color: white}
 	outline: none;
 	border-bottom: 2px solid $blue;
 	background: $blue;
+	color: white;
 }
 div.CodeMirror span.CodeMirror-matchingbracket {
 	color: inherit;
 }
-
 
 .cm-s-default .cm-header, .cm-s-default .cm-quote, .cm-s-default .cm-variable-2 {
 	color: black;
@@ -103,14 +214,9 @@ div.CodeMirror span.CodeMirror-matchingbracket {
 	font-size: inherit;
 	font-weight: 500;
 	font-style: normal;
-
 }
 .cm-strong {
 	font-weight: 500;
-}
-
-::selection {
-	background: white;
 }
 
 
@@ -121,10 +227,48 @@ div.CodeMirror span.CodeMirror-matchingbracket {
 // HTML OUTPUT
 
 .rendered_html {
-	table {
-		font-family: "Operator Mono";
-		font-weight: 100;
+	font-family: "Operator Mono";
+	font-weight: 300;
+
+	p, h1, h2, h3, h4, h5, h6, li, ul {
+		font-family: "Gotham Narrow";
+		font-size: 16px;
+		font-weight: 300;
+		font-style: normal;
+		margin: 0 0 16px 0;
+		line-height: 24px;
 	}
+
+	h1 {
+		font-size: 4em;
+		font-weight: 900;
+		line-height: 48px;
+	}
+
+	h2 {
+		font-size: 2.5em;
+		font-weight: 700;
+	}
+
+	h3 {
+		font-size: 1.5em;
+		font-weight: 700;
+	}
+
+	h4 {
+		font-size: 0.9em;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	h5, h6, strong {
+		font-weight: 500;
+	}
+
+	hr {
+		border-bottom: 1px solid black;
+	}
+
 	tbody tr:nth-child(even) {
 		background: $background-gray;
 	}

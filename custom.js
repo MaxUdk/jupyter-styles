@@ -1,3 +1,14 @@
+$([IPython.events]).on("app_initialized.NotebookApp", function () {
+    // $('div#header').hide();
+    $('div#maintoolbar').hide();
+});
+
+// $('.prompt').html(function() {
+// 	var text = $(this).text();
+// 	text = text.split('[')[0];
+// 	return text;
+// });
+
 // leave at least 2 line with only a star on it below, or doc generation fails
 /**
  *
