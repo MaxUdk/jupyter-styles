@@ -1,0 +1,167 @@
+$background-gray: #F7F7F7;
+$blue: #619CFF;
+
+body {
+	font-family: "Gotham Narrow"
+}
+
+.notebook_app {
+	background-color: white;
+}
+
+#notebook-container {
+	box-shadow: none;
+	width: 100%;
+}
+
+.edit_mode div.cell.selected, div.cell.selected {
+	border-color: white;
+	background: none;
+}
+div.cell.selected {
+	border-left: 3px solid lightgray;
+	margin-left: -3px;
+}
+.edit_mode div.cell.selected {border-left: 3px solid $blue;}
+
+div.input_area {
+	border: none;
+	border-radius: 4px 4px 0 0;
+	background: $background-gray;
+	padding: 5px;
+}
+div.output_subarea {
+	border: 2px solid $background-gray;
+	border-radius: 0 0 4px 4px;
+	padding: 10px;
+	max-width: none;
+}
+
+.prompt, div.input_prompt, div.output_prompt {
+	padding: 5px;
+	color: lightgray;
+	min-width: none;
+	font-family: "Operator Mono";
+	font-weight: 300;
+}
+div.output_prompt {color: white}
+
+.CodeMirror-linenumber {
+	color: #CFCFCF;
+}
+
+.CodeMirror pre, pre, .CodeMirror-linenumber {
+	font-family: "Operator Mono";
+	font-weight: 300;
+}
+
+/*
+.CodeMirror span.cm-keyword { line-height: 1em; font-weight: bold; color: #5A5CAD; }
+.CodeMirror span.cm-atom { color: #6C8CD5; }
+.CodeMirror span.cm-number { color: #164; }
+.CodeMirror span.cm-def { text-decoration:underline; }
+.CodeMirror span.cm-variable { color: black; }
+.CodeMirror span.cm-variable-2 { color:black; }
+.CodeMirror span.cm-variable-3 { color: black; }
+.CodeMirror span.cm-property {}
+.CodeMirror span.cm-operator {}
+.CodeMirror span.cm-comment { color: #0080FF; font-style: italic; }
+.CodeMirror span.cm-string { color: red; }
+.CodeMirror span.cm-meta { color: yellow; }
+.CodeMirror span.cm-qualifier { color: grey; }
+.CodeMirror span.cm-builtin { color: #7EA656; }
+.CodeMirror span.cm-bracket { color: #cc7; }
+.CodeMirror span.cm-tag { color: #3F7F7F; }
+.CodeMirror span.cm-attribute { color: #7F007F; }
+.CodeMirror span.cm-error { color: #f00; }
+*/
+
+.CodeMirror-cursor {
+	border-left: 2px solid $blue;
+	height: 18px !important;
+}
+
+.selected .CodeMirror .CodeMirror-activeline-background {
+	background: #e8f2ff;
+}
+
+.selected div.CodeMirror span.CodeMirror-matchingbracket {
+	outline: none;
+	border-bottom: 2px solid $blue;
+	background: $blue;
+}
+div.CodeMirror span.CodeMirror-matchingbracket {
+	color: inherit;
+}
+
+
+.cm-s-default .cm-header, .cm-s-default .cm-quote, .cm-s-default .cm-variable-2 {
+	color: black;
+}
+.cm-header-1, .cm-header-2, .cm-header-3, .cm-header-4, .cm-header-5, .cm-header-6 {
+	color: black;
+	font-size: inherit;
+	font-weight: 500;
+	font-style: normal;
+
+}
+.cm-strong {
+	font-weight: 500;
+}
+
+::selection {
+	background: white;
+}
+
+
+
+
+
+
+// HTML OUTPUT
+
+.rendered_html {
+	table {
+		font-family: "Operator Mono";
+		font-weight: 100;
+	}
+	tbody tr:nth-child(even) {
+		background: $background-gray;
+	}
+	th {
+		font-weight: 500;
+	}
+	table, tr, th, td {
+		border: none;
+		padding: 1px 4px;
+	}
+	td {
+		border-right: 1px solid $background-gray;
+		border-bottom: 1px solid $background-gray;
+		text-align: right;
+	}
+	thead tr th {
+		border-bottom: 1px solid black;
+		text-align: center;
+	}
+	thead tr th:nth-child(1) {
+		border-right: 1px solid black;
+	}
+	tbody tr th {
+		border-right: 1px solid black;
+		text-align: right;
+	}
+	tr {
+		margin: 0em 2em;
+	}
+}
+
+// GENERAL
+
+a {
+	color: $blue;
+	&:hover {
+		color: black;
+	}
+}
+
