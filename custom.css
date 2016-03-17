@@ -11,27 +11,60 @@ body {
   border: none;
   margin: 0; }
 
-body > #header #header-container {
+body > #header {
   background-color: #e3e3e3;
-  display: inline-block;
-  position: fixed;
-  padding: 0;
-  left: 408px;
-  top: 4px;
-  z-index: 1;
-  background: none; }
-  body > #header #header-container .save_widget {
-    border-left: 1px solid #777777; }
-  body > #header #header-container .filename {
-    padding: 0; }
-  body > #header #header-container .navbar-brand, body > #header #header-container #kernel_logo_widget, body > #header #header-container .checkpoint_status {
-    display: none; }
+  border-bottom: 0.5px solid #777777;
+  padding: 0 20px;
+  position: relative; }
+  body > #header #header-container {
+    display: inline-block;
+    position: fixed;
+    padding: 0;
+    left: 428px;
+    top: 4px;
+    z-index: 1;
+    background: none; }
+    body > #header #header-container .save_widget {
+      border-left: 1px solid #777777; }
+    body > #header #header-container .filename {
+      padding: 0; }
+    body > #header #header-container .navbar-brand, body > #header #header-container #kernel_logo_widget, body > #header #header-container .checkpoint_status {
+      display: none; }
+  @media (min-width: 1000px) {
+    body > #header {
+      padding: 0 120px; }
+      body > #header #header-container {
+        left: 528px; } }
+  @media (min-width: 1250px) {
+    body > #header {
+      padding: 0 370px 0 270px; }
+      body > #header #header-container {
+        left: 678px; } }
+  @media (min-width: 1500px) {
+    body > #header {
+      padding: 0 370px; }
+      body > #header #header-container {
+        left: 778px; } }
+  body > #header #maintoolbar {
+    margin-bottom: 0px; }
+    body > #header #maintoolbar .toolbar select {
+      -webkit-appearance: none;
+      padding: 2px 8px;
+      font-size: 13px;
+      color: #333;
+      background-color: #fff;
+      border-color: #ccc; }
+      body > #header #maintoolbar .toolbar select:hover {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #adadad; }
 
-.navbar-nav > li > a, .kernel_indicator_name, #header-container .filename, .autosave_status {
+.navbar-nav > li > a, .kernel_indicator_name, #header-container .filename, span.autosave_status {
   color: #777777;
   cursor: pointer;
-  font-size: 13px; }
-  .navbar-nav > li > a:hover, .navbar-nav > li > a:focus, .kernel_indicator_name:hover, .kernel_indicator_name:focus, #header-container .filename:hover, #header-container .filename:focus, .autosave_status:hover, .autosave_status:focus {
+  font-size: 13px;
+  color: #777; }
+  .navbar-nav > li > a:hover, .navbar-nav > li > a:focus, .kernel_indicator_name:hover, .kernel_indicator_name:focus, #header-container .filename:hover, #header-container .filename:focus, span.autosave_status:hover, span.autosave_status:focus {
     color: #333; }
 
 .navbar-default {
@@ -117,7 +150,8 @@ div.output_prompt {
   font-weight: 500; }
 .CodeMirror span.cm-def, .cm-s-ipython span.cm-def {
   color: #619cff;
-  font-style: italic; }
+  font-style: italic;
+  text-decoration: underline; }
 .CodeMirror span.cm-variable, .CodeMirror span.cm-variable-3, .CodeMirror span.cm-bracket, .cm-s-ipython span.cm-variable, .cm-s-ipython span.cm-variable-3, .cm-s-ipython span.cm-bracket {
   color: black; }
 .CodeMirror span.cm-meta, .cm-s-ipython span.cm-meta {
@@ -135,7 +169,7 @@ div.output_prompt {
   font-weight: 500; }
 
 .CodeMirror-cursor {
-  border-left: 2px solid #619cff;
+  border-left: 2.5px solid #619cff;
   height: 18px !important; }
 
 .selected .CodeMirror .CodeMirror-activeline-background {
@@ -165,51 +199,60 @@ div.CodeMirror span.CodeMirror-matchingbracket {
 .rendered_html {
   font-family: "Operator Mono";
   font-weight: 300; }
-  .rendered_html p, .rendered_html h1, .rendered_html h2, .rendered_html h3, .rendered_html h4, .rendered_html h5, .rendered_html h6, .rendered_html li, .rendered_html ul {
+  .rendered_html.text_cell_render p, .rendered_html.text_cell_render h1, .rendered_html.text_cell_render h2, .rendered_html.text_cell_render h3, .rendered_html.text_cell_render h4, .rendered_html.text_cell_render h5, .rendered_html.text_cell_render h6, .rendered_html.text_cell_render ul, .rendered_html.text_cell_render ol {
     font-family: "Gotham Narrow";
     font-size: 16px;
     font-weight: 300;
     font-style: normal;
-    margin: 0 0 16px 0;
-    line-height: 24px; }
-  .rendered_html h1 {
+    line-height: 24px;
+    margin-bottom: 16px;
+    margin-top: 0; }
+    .rendered_html.text_cell_render p ul, .rendered_html.text_cell_render p ol, .rendered_html.text_cell_render h1 ul, .rendered_html.text_cell_render h1 ol, .rendered_html.text_cell_render h2 ul, .rendered_html.text_cell_render h2 ol, .rendered_html.text_cell_render h3 ul, .rendered_html.text_cell_render h3 ol, .rendered_html.text_cell_render h4 ul, .rendered_html.text_cell_render h4 ol, .rendered_html.text_cell_render h5 ul, .rendered_html.text_cell_render h5 ol, .rendered_html.text_cell_render h6 ul, .rendered_html.text_cell_render h6 ol, .rendered_html.text_cell_render ul ul, .rendered_html.text_cell_render ul ol, .rendered_html.text_cell_render ol ul, .rendered_html.text_cell_render ol ol {
+      margin-bottom: 0; }
+  .rendered_html.text_cell_render h1 {
     font-size: 4em;
     font-weight: 900;
     line-height: 48px; }
-  .rendered_html h2 {
+  .rendered_html.text_cell_render h2 {
     font-size: 2.5em;
-    font-weight: 700; }
-  .rendered_html h3 {
+    font-weight: 700;
+    line-height: 48px; }
+  .rendered_html.text_cell_render h3 {
     font-size: 1.5em;
     font-weight: 700; }
-  .rendered_html h4 {
+  .rendered_html.text_cell_render h4 {
     font-size: 0.9em;
     font-weight: 700;
     text-transform: uppercase; }
-  .rendered_html h5, .rendered_html h6, .rendered_html strong {
-    font-weight: 500; }
-  .rendered_html hr {
+  .rendered_html.text_cell_render h5, .rendered_html.text_cell_render h6, .rendered_html.text_cell_render strong {
+    font-weight: 700; }
+    .rendered_html.text_cell_render h5 code, .rendered_html.text_cell_render h6 code, .rendered_html.text_cell_render strong code {
+      font-weight: 700; }
+  .rendered_html.text_cell_render hr {
     border-bottom: 1px solid black; }
-  .rendered_html tbody tr:nth-child(even) {
-    background: #f7f7f7; }
-  .rendered_html th {
-    font-weight: 500; }
-  .rendered_html table, .rendered_html tr, .rendered_html th, .rendered_html td {
+  .rendered_html.text_cell_render code {
+    font-weight: 200;
+    font-size: 95; }
+  .rendered_html table, .rendered_html table tr, .rendered_html table th, .rendered_html table td {
     border: none;
     padding: 1px 4px; }
-  .rendered_html td {
+  .rendered_html table tbody tr:nth-child(even) {
+    background: #f7f7f7; }
+  .rendered_html table th {
+    font-weight: 500; }
+  .rendered_html table td {
     border-right: 1px solid #f7f7f7;
     border-bottom: 1px solid #f7f7f7;
     text-align: right; }
-  .rendered_html thead tr th {
+  .rendered_html table thead tr th {
     border-bottom: 1px solid black;
     text-align: center; }
-  .rendered_html thead tr th:nth-child(1) {
+  .rendered_html table thead tr th:nth-child(1) {
     border-right: 1px solid black; }
-  .rendered_html tbody tr th {
+  .rendered_html table tbody tr th {
     border-right: 1px solid black;
     text-align: right; }
-  .rendered_html tr {
+  .rendered_html table tr {
     margin: 0em 2em; }
 
 a {

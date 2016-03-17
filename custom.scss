@@ -31,34 +31,83 @@ body {
 	box-shadow: none;
 	border-bottom: 1px solid #AAA;
 }
+
 .container {
 	width: 100%;
 	border: none;
 	margin: 0;
 }
-body > #header #header-container {
+
+body > #header {
 	background-color: $menu-color;
-	display: inline-block;
-	position: fixed;
-	padding: 0;
-	left: 408px;
-	top: 4px;
-	z-index: 1;
-	background: none;
-	.save_widget {
-		border-left: 1px solid $menu-border-color;
-	}
-	.filename {
+	border-bottom: 0.5px solid $menu-border-color;
+	padding: 0 20px;
+	position: relative;
+
+	#header-container {
+		display: inline-block;
+		position: fixed;
 		padding: 0;
+		left: 428px;
+		top: 4px;
+		z-index: 1;
+		background: none;
+		.save_widget {
+			border-left: 1px solid $menu-border-color;
+		}
+		.filename {
+			padding: 0;
+		}
+		.navbar-brand, #kernel_logo_widget, .checkpoint_status {
+			display: none;
+		}
 	}
-	.navbar-brand, #kernel_logo_widget, .checkpoint_status {
-		display: none;
+
+	@media (min-width: 1000px){
+		padding: 0 120px;
+		#header-container {
+			left: 528px;
+		}
+	}
+	@media (min-width: 1250px){
+		padding: 0 370px 0 270px;
+		#header-container {
+			left: 678px;
+		}
+	}
+	@media (min-width: 1500px){
+		padding: 0 370px;
+		#header-container {
+			left: 778px;
+		}
+	}
+
+	#maintoolbar {
+		margin-bottom: 0px;
+
+		.toolbar select {
+			-webkit-appearance: none;
+			padding: 2px 8px;
+			font-size: 13px;
+
+			color: #333;
+			background-color: #fff;
+			border-color: #ccc;
+
+			&:hover {
+				color: #333;
+				background-color: #e6e6e6;
+				border-color: #adadad;
+			}
+		}
 	}
 }
-.navbar-nav > li > a, .kernel_indicator_name, #header-container .filename, .autosave_status{
+
+.navbar-nav > li > a, .kernel_indicator_name, #header-container .filename, span.autosave_status {
 	color: $menu-border-color;
 	cursor: pointer;
 	font-size: 13px;
+	color: #777;
 	&:hover, &:focus {
 		color: #333;
 	}
@@ -164,6 +213,7 @@ div.output_prompt {color: white}
 	span.cm-def {
 		color: $blue;
 		font-style: italic;
+		text-decoration: underline;
 	}
 	span.cm-variable, span.cm-variable-3, span.cm-bracket {
 		color: black;
@@ -188,7 +238,7 @@ div.output_prompt {color: white}
 }
 
 .CodeMirror-cursor {
-	border-left: 2px solid $blue;
+	border-left: 2.5px solid $blue;
 	height: 18px !important;
 }
 
@@ -230,73 +280,97 @@ div.CodeMirror span.CodeMirror-matchingbracket {
 	font-family: "Operator Mono";
 	font-weight: 300;
 
-	p, h1, h2, h3, h4, h5, h6, li, ul {
-		font-family: "Gotham Narrow";
-		font-size: 16px;
-		font-weight: 300;
-		font-style: normal;
-		margin: 0 0 16px 0;
-		line-height: 24px;
+	&.text_cell_render {
+		p, h1, h2, h3, h4, h5, h6, ul, ol {
+			font-family: "Gotham Narrow";
+			font-size: 16px;
+			font-weight: 300;
+			font-style: normal;
+			line-height: 24px;
+			margin-bottom: 16px;
+			margin-top: 0;
+			ul, ol {
+				margin-bottom: 0;
+			}
+		}
+
+		h1 {
+			font-size: 4em;
+			font-weight: 900;
+			line-height: 48px;
+		}
+
+		h2 {
+			font-size: 2.5em;
+			font-weight: 700;
+			line-height: 48px;
+		}
+
+		h3 {
+			font-size: 1.5em;
+			font-weight: 700;
+		}
+
+		h4 {
+			font-size: 0.9em;
+			font-weight: 700;
+			text-transform: uppercase;
+		}
+
+		h5, h6, strong {
+			font-weight: 700;
+			code {
+				font-weight: 700;
+			}
+		}
+
+		hr {
+			border-bottom: 1px solid black;
+		}
+
+		code {
+			font-weight: 200;
+			font-size: 95;
+		}
 	}
 
-	h1 {
-		font-size: 4em;
-		font-weight: 900;
-		line-height: 48px;
-	}
+	table {
+		&, tr, th, td {
+			border: none;
+			padding: 1px 4px;
+		}
 
-	h2 {
-		font-size: 2.5em;
-		font-weight: 700;
-	}
+		tbody tr:nth-child(even) {
+			background: $background-gray;
+		}
 
-	h3 {
-		font-size: 1.5em;
-		font-weight: 700;
-	}
+		th {
+			font-weight: 500;
+		}
 
-	h4 {
-		font-size: 0.9em;
-		font-weight: 700;
-		text-transform: uppercase;
-	}
+		td {
+			border-right: 1px solid $background-gray;
+			border-bottom: 1px solid $background-gray;
+			text-align: right;
+		}
 
-	h5, h6, strong {
-		font-weight: 500;
-	}
+		thead tr th {
+			border-bottom: 1px solid black;
+			text-align: center;
+		}
 
-	hr {
-		border-bottom: 1px solid black;
-	}
+		thead tr th:nth-child(1) {
+			border-right: 1px solid black;
+		}
 
-	tbody tr:nth-child(even) {
-		background: $background-gray;
-	}
-	th {
-		font-weight: 500;
-	}
-	table, tr, th, td {
-		border: none;
-		padding: 1px 4px;
-	}
-	td {
-		border-right: 1px solid $background-gray;
-		border-bottom: 1px solid $background-gray;
-		text-align: right;
-	}
-	thead tr th {
-		border-bottom: 1px solid black;
-		text-align: center;
-	}
-	thead tr th:nth-child(1) {
-		border-right: 1px solid black;
-	}
-	tbody tr th {
-		border-right: 1px solid black;
-		text-align: right;
-	}
-	tr {
-		margin: 0em 2em;
+		tbody tr th {
+			border-right: 1px solid black;
+			text-align: right;
+		}
+
+		tr {
+			margin: 0em 2em;
+		}
 	}
 }
 
